@@ -4,7 +4,7 @@ import ErrorResponseHandler from "./ErrorReponseHandler";
 
 type ApiResponse = SuccessResponseHandler | ErrorResponseHandler;
 
-const request = async <T>(url: string): Promise<ApiResponse> => {
+const request = async (url: string): Promise<ApiResponse> => {
   try {
     const response = await fetch(`${API_BASE_URL}${url}`);
     if (!response.ok) {

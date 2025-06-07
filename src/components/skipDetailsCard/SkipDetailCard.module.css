@@ -3,9 +3,13 @@
   flex-direction: column;
   gap: 0.6rem;
   background: var(--card-primary-color);
-  width: 45rem;
+  width: 37.5rem;
   padding: 1.5rem;
   border-radius: 8px;
+}
+
+.skipDetailCardContainer > img {
+  object-fit: cover;
 }
 
 .skipDetailCardContainer > p {
