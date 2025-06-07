@@ -1,0 +1,10 @@
+.bottomSheetContainer {
+  display: flex;
+  background: var(--card-primary-color);
+  width: 100vw;
+  position: fixed;
+  bottom: 0;
+  justify-content: flex-end;
+  gap: 1.4rem;
+  padding: 15px 10px;
+}
