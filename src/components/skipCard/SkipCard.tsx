@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./SkipCard.module.css";
+import currencyFormatter from "../../utils/currencyFormatter";
 const SkipCard = () => {
   return (
     <section
@@ -7,7 +8,7 @@ const SkipCard = () => {
     >
       <section className={styles.skipCardContent}>
         <h1>4 Yard</h1>
-        <h4>$ 211</h4>
+        <h4>{currencyFormatter(411)}</h4>
         <p>14 day hire period</p>
       </section>
       <p>Selected</p>
