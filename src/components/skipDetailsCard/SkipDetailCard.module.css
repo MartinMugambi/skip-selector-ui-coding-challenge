@@ -1,0 +1,28 @@
+.skipDetailCardContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  background: var(--card-primary-color);
+  width: 45rem;
+  padding: 1.5rem;
+  border-radius: 8px;
+}
+
+.skipDetailCardContainer > p {
+  color: var(--selection-color);
+  font-weight: bolder;
+  font-size: 1.3rem;
+}
+
+.skipDetailCardContainer > h6 {
+  background: var(--primary-background-color);
+  width: fit-content;
+  padding: 3px;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.skipDetailCardContainer > span {
+  font-size: 0.9rem;
+  color: var(--text-secondary-color);
+}
