@@ -1,0 +1,61 @@
+.progressContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 3rem;
+}
+
+.progressBar {
+  color: white;
+  width: 45%;
+  height: 8px;
+  border-radius: 100px;
+  appearance: none;
+  overflow: hidden;
+}
+
+.progressBar::-webkit-progress-bar {
+  background: #e2e8f0;
+  border-radius: 100px;
+}
+
+.progressBar::-webkit-progress-value {
+  background: var(--primary-background-color);
+  border-radius: 100px;
+}
+
+.progressBar::-moz-progress-bar {
+  background: var(--primary-background-color);
+  border-radius: 100px;
+}
+
+.progressBarItems {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  width: 45%;
+  margin-top: 0.8rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.progressCount {
+  background: var(--primary-background-color);
+  width: 20px;
+  height: 20px;
+  border-radius: 50px;
+  cursor: pointer;
+  text-align: center;
+  font-size: 0.7rem;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.progressTitle {
+  width: 100%;
+  text-align: center;
+  font-size: 0.8rem;
+}
