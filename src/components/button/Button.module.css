@@ -1,0 +1,10 @@
+.button {
+  background-color: var(--selection-color);
+  color: white;
+  font-weight: 500;
+  border: none;
+  outline: none;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 0.9rem;
+}
