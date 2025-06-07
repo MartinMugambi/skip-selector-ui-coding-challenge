@@ -14,7 +14,12 @@
   border: 3px solid var(--primary-background-color);
 }
 
-.skipCardContainer > p {
+.skipCardTextUnselcted {
+  color: var(--text-primary-color);
+  font-weight: bold;
+}
+
+.skipCardContainerTextSelected {
   color: var(--selection-color);
   font-weight: bold;
 }

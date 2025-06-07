@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import getElements from "../services/api";
 import SuccessResponseHandler from "../services/SuccessResponseHandler";
-const useFetchHook = (url) => {
+const useFetchHook = (url: string) => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
