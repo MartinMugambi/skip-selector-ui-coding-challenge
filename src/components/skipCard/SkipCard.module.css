@@ -1,0 +1,39 @@
+.skipCardContainer {
+  display: flex;
+  align-items: center;
+  background: var(--card-primary-color);
+  padding: 1rem;
+  width: 25rem;
+  height: 7rem;
+  border-radius: 12px;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.skipCardContainerSelected {
+  border: 3px solid var(--primary-background-color);
+}
+
+.skipCardContainer > p {
+  color: var(--selection-color);
+  font-weight: bold;
+}
+
+.skipCardContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+.skipCardContent h1 {
+  font-weight: bold;
+  color: var(--text-primary-color);
+}
+
+.skipCardContent h4 {
+  color: var(--selection-color);
+}
+
+.skipCardContent > p {
+  font-size: 0.8rem;
+  color: var(--text-secondary-color);
+}
