@@ -1,15 +1,12 @@
 import React from "react";
-import ProgressBarComponent from "./components/progressBar/progressBar";
-import SkipCard from "./components/skipCard/SkipCard";
-import SkipCardDetails from "./components/skipDetailsCard/SkipDetailCard";
+import Home from "./views/Home/Home";
+import Layout from "./components/layout/Layout";
 
 const App = () => {
   return (
-    <main>
-      <ProgressBarComponent />
-      <SkipCard />
-      <SkipCardDetails />
-    </main>
+    <Layout>
+      <Home />
+    </Layout>
   );
 };
 

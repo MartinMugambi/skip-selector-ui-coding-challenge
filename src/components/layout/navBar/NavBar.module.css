@@ -1,0 +1,10 @@
+.navBarContainer {
+  background: var(--card-primary-color);
+  width: 100vw;
+  padding: 8px;
+}
+
+.navBarContainer > h1 {
+  color: var(--text-primary-color);
+  font-size: 1.2rem;
+}

@@ -1,0 +1,25 @@
+.homeContainer {
+  width: 100%;
+}
+
+.homeContent {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 0.7rem;
+  margin-top: 1.5rem;
+}
+
+.homeContent > h1 {
+  color: var(--text-primary-color);
+}
+
+.homeContent > p {
+  color: var(--text-primary-colo);
+}
+
+.homeCardSection {
+  display: flex;
+  gap: 2rem;
+  margin-top: 2rem;
+}
