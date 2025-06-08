@@ -30,6 +30,10 @@
   gap: 1rem;
 }
 
+.homeCustomPagination {
+  margin-top: 1rem;
+}
+
 .homeCardSectionHidePreview {
   color: var(--text-secondary-color);
   font-weight: bolder;

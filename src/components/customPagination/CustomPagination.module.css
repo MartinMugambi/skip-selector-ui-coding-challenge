@@ -1,0 +1,21 @@
+.customPaginationContainer {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.customPaginationButton {
+  padding: 5px 10px;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.customPaginationButtonSelected {
+  border: thin solid var(--primary-background-color);
+}
+.customPaginationButtonUnSelected {
+  border: none;
+  color: white;
+}

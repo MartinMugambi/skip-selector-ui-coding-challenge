@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import SkipCard from "../../components/skipCard/SkipCard";
 import SkipCardDetails from "../../components/skipDetailsCard/SkipDetailCard";
 import styles from "./Home.module.css";
 import ProgressBarComponent from "../../components/progressBar/progressBar";
 import SpacingWrapper from "../../components/spacingWrapper/SpacingWrapper";
 import useBoundStore from "../../store/useBoundStore";
+import CustomPagination from "../../components/customPagination/CustomPagination";
 const Home = () => {
   const skipData = useBoundStore((state) => state.skipData);
 
@@ -16,6 +17,15 @@ const Home = () => {
 
   const isCardSelected = useBoundStore((state) => state.isCardSelected);
 
+  const selectPage = useBoundStore((state) => state.selectPage);
+
+  const currentPage = useBoundStore((state) => state.currentPage);
+  const itemsPerPage = 3;
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+
+  const endIndex = startIndex + itemsPerPage;
+
   const handleSelect = (skipItem) => {
     selectSkip(skipItem, skipItem.id);
 
@@ -23,6 +33,16 @@ const Home = () => {
       selectSkip({}, null);
     }
   };
+
+  const handlePageClick = (page: number) => {
+    selectPage(page);
+  };
+
+  const availableSkipData = useMemo(() => {
+    const skip = skipData.slice(startIndex, endIndex);
+    selectSkip(skipData[startIndex], skipData[startIndex]?.id);
+    return skip;
+  }, [skipData, startIndex, endIndex]);
 
   useEffect(() => {
     getSkipData();
@@ -38,7 +58,7 @@ const Home = () => {
         </section>
         <section className={styles.homeCardContainer}>
           <section className={styles.homeCardSection}>
-            {skipData.map((skipItem) => {
+            {availableSkipData.map((skipItem) => {
               return (
                 <SkipCard
                   key={skipItem?.id}
@@ -66,6 +86,13 @@ const Home = () => {
               <p>Select Skip Size to preview</p>
             </section>
           )}
+        </section>
+        <section className={styles.homeCustomPagination}>
+          <CustomPagination
+            totalItems={skipData.length}
+            itemsPerPage={itemsPerPage}
+            handlePageClick={handlePageClick}
+          />
         </section>
       </SpacingWrapper>
     </main>
