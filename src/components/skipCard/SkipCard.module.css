@@ -48,3 +48,15 @@
     width: 100%;
   }
 }
+
+@media screen and (max-width: 1024px) {
+  .skipCardContainer {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .skipCardContainer {
+    width: 100%;
+  }
+}

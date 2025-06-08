@@ -56,3 +56,31 @@
     margin-top: 1.8rem;
   }
 }
+
+@media screen and (max-width: 1024px) {
+  .homeCardSectionHidePreview {
+    display: none;
+  }
+  .homeCardContainer {
+    width: 100%;
+    display: block;
+    margin-top: 1.6rem;
+  }
+  .homeContent {
+    margin-top: 1.8rem;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .homeCardSectionHidePreview {
+    display: none;
+  }
+  .homeCardContainer {
+    width: 100%;
+    display: block;
+    margin-top: 1.6rem;
+  }
+  .homeContent {
+    margin-top: 1.8rem;
+  }
+}
