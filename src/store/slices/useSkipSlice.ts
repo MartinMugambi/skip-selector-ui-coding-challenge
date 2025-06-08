@@ -6,6 +6,10 @@ const createSkipSlice = (set, get) => ({
   skipDetailData: {},
   isCardSelected: null,
   currentSkipStep: 3,
+  currentPage: 1,
+  selectPage: (page) => {
+    set({ currentPage: page });
+  },
   getSkipData: async () => {
     set({ loading: true });
     getElements("api/skips/by-location?postcode=NR32&area=Lowestoft")
@@ -21,10 +25,10 @@ const createSkipSlice = (set, get) => ({
             }) ?? [];
 
           set({
-            skipData: proccessData.slice(0, 3),
+            skipData: proccessData,
             loading: false,
             skipDetailData: proccessData[0] ?? {},
-            isCardSelected: proccessData[0].id ?? {},
+            isCardSelected: proccessData[0].id ?? "",
           });
         }
       })

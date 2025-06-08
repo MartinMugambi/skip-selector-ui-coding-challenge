@@ -4,12 +4,13 @@
   gap: 0.6rem;
   background: var(--card-primary-color);
   width: 37.5rem;
-  padding: 1.5rem;
+  padding: 1rem;
   border-radius: 8px;
 }
 
 .skipDetailCardContainer > img {
   object-fit: cover;
+  border-radius: 8px;
 }
 
 .skipDetailCardContainer > p {
@@ -18,16 +19,16 @@
   font-size: 1.3rem;
 }
 
-.skipDetailCardContainer > h6 {
+.skipDetailCardContainer > h1 {
   background: var(--primary-background-color);
   width: fit-content;
-  padding: 3px;
+  padding: 1px 4px;
   border-radius: 20px;
-  text-align: center;
+  font-size: 0.7rem;
 }
 
 .skipDetailCardContainer > span {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   color: var(--text-secondary-color);
 }
 

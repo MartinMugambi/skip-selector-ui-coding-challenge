@@ -15,9 +15,9 @@ const SkipCardDetails = (props: SkipDetailCardProps) => {
         alt="skip_image"
         loading="lazy"
         width={"550"}
-        height="170"
+        height="160"
       />
-      <h6>{hire_period_days} day hire period</h6>
+      <span>{hire_period_days} day hire period</span>
       <p>{currencyFormatter(price_before_vat)}</p>
       <span>Perfect for small project</span>
       <Button title="Selected" />
