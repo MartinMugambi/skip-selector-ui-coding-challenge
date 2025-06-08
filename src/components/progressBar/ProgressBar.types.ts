@@ -1,4 +1,4 @@
-export interface ProgressData {
+export interface ProgressDataProps {
   id: number;
   title: string;
 }

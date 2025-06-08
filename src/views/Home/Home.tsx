@@ -30,12 +30,12 @@ const Home = () => {
 
   return (
     <main>
-      <ProgressBarComponent />
-      <section className={styles.homeContent}>
-        <h1>Choose Your Skip Size</h1>
-        <p>Select the skip size that best suites your needs</p>
-      </section>
       <SpacingWrapper>
+        <ProgressBarComponent />
+        <section className={styles.homeContent}>
+          <h1>Choose Your Skip Size</h1>
+          <p>Select the skip size that best suites your needs</p>
+        </section>
         <section className={styles.homeCardContainer}>
           <section className={styles.homeCardSection}>
             {skipData.map((skipItem) => {

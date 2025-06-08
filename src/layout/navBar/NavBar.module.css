@@ -9,3 +9,13 @@
   font-size: 1.2rem;
   margin: 0rem 5rem;
 }
+
+@media screen and (max-width: 768px) {
+  .navBarContainer {
+    width: 100vw !important;
+    padding: 5px;
+  }
+  .navBarContainer > h1 {
+    margin: 0rem 1rem;
+  }
+}

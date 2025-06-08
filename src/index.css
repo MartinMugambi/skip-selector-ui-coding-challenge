@@ -38,3 +38,10 @@ body {
   background: var(--secondary-background-color);
   overflow-x: hidden;
 }
+
+@media screen and (max-width: 768px) {
+  body {
+    width: 100vw;
+    overflow-x: hidden;
+  }
+}

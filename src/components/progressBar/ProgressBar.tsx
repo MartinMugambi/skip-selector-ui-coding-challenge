@@ -1,21 +1,28 @@
 import React from "react";
 import styles from "./ProgressBar.module.css";
 import progressBarData from "./ProgressData";
-// import useFetchHook from "../../hooks/useFetch";
+import useBoundStore from "../../store/useBoundStore";
+
 const ProgressBarComponent = () => {
-  // const { data } = useFetchHook(
-  //   "api/skips/by-location?postcode=NR32&area=Lowestoft"
-  // );
+  const currentSkipStep = useBoundStore((state) => state.currentSkipStep);
 
   return (
     <main className={styles.progressContainer}>
-      <progress max={100} value="64" className={styles.progressBar}></progress>
+      <progress max={100} value="38" className={styles.progressBar}></progress>
       <section className={styles.progressBarItems}>
-        {progressBarData.map((progressData) => {
+        {progressBarData.map((progressData, index) => {
           return (
             <section key={progressData.id}>
-              <p className={styles.progressCount}>{progressData.id}</p>
-              <span className={styles.progressTitle}>{progressData.title}</span>
+              <p
+                className={`${styles.progressCount} ${
+                  currentSkipStep === index + 1
+                    ? styles.progressBarSelected
+                    : styles.progressBarUnSelected
+                }`}
+              >
+                {progressData.id}
+              </p>
+              <p className={styles.progressTitle}>{progressData.title}</p>
             </section>
           );
         })}
