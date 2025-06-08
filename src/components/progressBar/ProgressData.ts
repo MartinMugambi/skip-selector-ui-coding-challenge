@@ -1,5 +1,5 @@
-import { ProgressData } from "./ProgressBar.types";
-const progressBarData: ProgressData[] = [
+import { ProgressDataProps } from "./ProgressBar.types";
+const progressBarData: ProgressDataProps[] = [
   {
     id: 1,
     title: "Postcode",
