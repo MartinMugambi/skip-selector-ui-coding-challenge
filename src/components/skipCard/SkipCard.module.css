@@ -42,3 +42,9 @@
   font-size: 0.8rem;
   color: var(--text-secondary-color);
 }
+
+@media screen and (max-width: 768px) {
+  .skipCardContainer {
+    width: 100%;
+  }
+}
