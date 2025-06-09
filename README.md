@@ -75,13 +75,13 @@ git clone https://github.com/MartinMugambi/react-web-project.git
 2. Install dependecies
 
 ```bash
-yarn install
+npm install
 ```
 
 3. Change directory
 
 ```bash
- cd react-web-project
+ cd skip-selector-ui
 ```
 
 4. Run the application
