@@ -8,7 +8,7 @@ jest.mock("../../../store/useBoundStore", () => ({
   default: jest.fn(),
 }));
 
-describe("Unit test :CustomPagination Component", () => {
+describe("Unit test:CustomPagination Component", () => {
   const mockUseBoundStore = useBoundStore as unknown as jest.MockedFunction<
     <T>(selector: (state: { currentPage: number }) => T) => T
   >;

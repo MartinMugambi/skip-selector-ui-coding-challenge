@@ -62,6 +62,36 @@ Automated pipeline for:
 
 ### 1. Clone the Repository
 
+## Getting Started
+
+First, run the development server:
+
+1. Clone the project
+
 ```bash
-git clone https://github.com/MartinMugambi/skip-selector-ui-coding-challenge.git
+git clone https://github.com/MartinMugambi/react-web-project.git
 ```
+
+2. Install dependecies
+
+```bash
+yarn install
+```
+
+3. Change directory
+
+```bash
+ cd react-web-project
+```
+
+4. Run the application
+
+```bash
+npm run dev
+```
+
+Open [http://localhost:5173](http://localhost:5173) with your browser to see the result.
+
+## Deployment on Firebase
+
+The project has been deployed to Firebase using Github action CI/CD and here is the link: [react-web-project](https://skip-selector-project.web.app/)
