@@ -1,27 +1,16 @@
-import React from "react";
 import styles from "./CustomPagination.module.css";
 import useBoundStore from "../../store/useBoundStore";
-
-type CustomPaginationProps = {
-  totalItems: number;
-  itemsPerPage: number;
-  handlePageClick: (page: number) => void;
-};
-
-interface StoreState {
-  currentPage: number;
-}
-
-const CustomPagination: React.FC<CustomPaginationProps> = ({
-  totalItems,
-  itemsPerPage,
-  handlePageClick,
-}) => {
-  const totalPages = Math.ceil(totalItems / itemsPerPage);
-  // Type the state parameter
-  const currentPage = useBoundStore((state: StoreState) => state.currentPage);
+import CustomPaginationProps from "./CustomPagination.types";
+const CustomPagination = (props: CustomPaginationProps) => {
+  const { totalItems, itemsPerPage, handlePageClick } = props;
+  const totalPages =
+    itemsPerPage > 0 ? Math.ceil(totalItems / itemsPerPage) : 0;
+  const currentPage = useBoundStore((state) => state.currentPage);
   return (
-    <section className={styles.customPaginationContainer}>
+    <section
+      className={styles.customPaginationContainer}
+      data-testid="custom-pagination-container"
+    >
       {Array.from({ length: totalPages }, (_, index) => {
         const page = index + 1;
         return (

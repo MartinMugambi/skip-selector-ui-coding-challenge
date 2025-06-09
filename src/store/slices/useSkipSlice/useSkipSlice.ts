@@ -1,13 +1,21 @@
-import getElements from "../../services/api";
-import SuccessResponseHandler from "../../services/SuccessResponseHandler";
-const createSkipSlice = (set, get) => ({
+import { StateCreator } from "zustand";
+import getElements from "../../../services/api";
+import SuccessResponseHandler from "../../../services/SuccessResponseHandler";
+import { SkipSlice, SkipItem } from "./useSkip.types";
+const createSkipSlice: StateCreator<SkipSlice> = (set) => ({
   skipData: [],
   loading: false,
-  skipDetailData: {},
+  skipDetailData: {
+    id: 1,
+    size: 8,
+    hire_period_days: 14,
+    price_before_vat: 200,
+    image: "",
+  },
   isCardSelected: null,
   currentSkipStep: 3,
   currentPage: 1,
-  selectPage: (page) => {
+  selectPage: (page: number) => {
     set({ currentPage: page });
   },
   getSkipData: async () => {
@@ -16,7 +24,7 @@ const createSkipSlice = (set, get) => ({
       .then((response) => {
         if (response instanceof SuccessResponseHandler) {
           const proccessData =
-            response.data.map((data) => {
+            response.data.map((data: SkipItem) => {
               return {
                 ...data,
                 image:
@@ -32,9 +40,16 @@ const createSkipSlice = (set, get) => ({
           });
         }
       })
-      .catch((error) => {});
+      .catch((error) => {
+        set({
+          loading: false,
+          skipData: [],
+          skipDetailData: null,
+          isCardSelected: undefined,
+        });
+      });
   },
-  selectSkip: (skipItem, id) => {
+  selectSkip: (skipItem: SkipItem | null, id?: number | null) => {
     set({ skipDetailData: skipItem, isCardSelected: id });
   },
 });

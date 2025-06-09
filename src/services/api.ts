@@ -27,12 +27,7 @@ const request = async (url: string): Promise<ApiResponse> => {
       "Data Fetched Successfully"
     );
   } catch (error) {
-    return new ErrorResponseHandler(
-      false,
-      500,
-      error?.message ?? error,
-      "Request Failed"
-    );
+    return new ErrorResponseHandler(false, 500, error, "Request Failed");
   }
 };
 

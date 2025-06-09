@@ -1,11 +1,12 @@
-import React, { useEffect, useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import SkipCard from "../../components/skipCard/SkipCard";
 import SkipCardDetails from "../../components/skipDetailsCard/SkipDetailCard";
 import styles from "./Home.module.css";
-import ProgressBarComponent from "../../components/progressBar/progressBar";
+import ProgressBar from "../../components/progressBar/ProgressBar";
 import SpacingWrapper from "../../components/spacingWrapper/SpacingWrapper";
 import useBoundStore from "../../store/useBoundStore";
 import CustomPagination from "../../components/customPagination/CustomPagination";
+import { SkipItem } from "../../store/slices/useSkipSlice/useSkip.types";
 const Home = () => {
   const skipData = useBoundStore((state) => state.skipData);
 
@@ -26,11 +27,11 @@ const Home = () => {
 
   const endIndex = startIndex + itemsPerPage;
 
-  const handleSelect = (skipItem) => {
+  const handleSelect = (skipItem: SkipItem) => {
     selectSkip(skipItem, skipItem.id);
 
     if (skipItem.id === isCardSelected) {
-      selectSkip({}, null);
+      selectSkip(null, null);
     }
   };
 
@@ -51,7 +52,7 @@ const Home = () => {
   return (
     <main>
       <SpacingWrapper>
-        <ProgressBarComponent />
+        <ProgressBar />
         <section className={styles.homeContent}>
           <h1>Choose Your Skip Size</h1>
           <p>Select the skip size that best suites your needs</p>

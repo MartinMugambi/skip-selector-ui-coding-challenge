@@ -1,4 +1,3 @@
-import React from "react";
 import SkipCardProps from "./SkipCard.types";
 import currencyFormatter from "../../utils/currencyFormatter";
 import styles from "./SkipCard.module.css";
