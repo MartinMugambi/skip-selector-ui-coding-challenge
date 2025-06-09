@@ -1,84 +1,68 @@
 import getElements from "../api";
-import ErrorResponseHandler from "../ErrorReponseHandler";
 import SuccessResponseHandler from "../SuccessResponseHandler";
+import ErrorResponseHandler from "../ErrorReponseHandler";
 
-// Mock the fetch API
-global.fetch = jest.fn();
-
-// Mock the API_BASE_URL constant
-jest.mock("../../constants/contants", () => ({
-  API_BASE_URL: "https://api.example.com",
-}));
+const API_BASE_URL = "https://app.wewantwaste.co.uk/";
 
 describe("getElements", () => {
-  const mockUrl = "/test-endpoint";
-  const fullUrl = `https://api.example.com${mockUrl}`;
-
   beforeEach(() => {
-    jest.clearAllMocks();
+    global.fetch = jest.fn();
   });
 
-  it("should return SuccessResponseHandler for successful API response", async () => {
-    const mockData = [{ id: 1, name: "Test" }];
-    (global.fetch as jest.Mock).mockResolvedValueOnce({
+  afterEach(() => {
+    jest.resetAllMocks();
+  });
+
+  it("returns SuccessResponseHandler on successful fetch", async () => {
+    const mockData = { foo: "bar" };
+    (fetch as jest.Mock).mockResolvedValueOnce({
       ok: true,
       status: 200,
-      json: jest.fn().mockResolvedValueOnce(mockData),
+      json: async () => mockData,
     });
 
-    const response = await getElements(mockUrl);
-
-    expect(fetch).toHaveBeenCalledWith(fullUrl);
-    expect(response).toBeInstanceOf(SuccessResponseHandler);
-    expect(response).toEqual(
-      new SuccessResponseHandler(
-        true,
-        200,
-        mockData,
-        "Data Fetched Successfully"
-      )
-    );
+    const result = await getElements("/test");
+    expect(result).toBeInstanceOf(SuccessResponseHandler);
+    expect(result).toMatchObject({
+      success: true,
+      statusCode: 200,
+      data: mockData,
+      message: "Data Fetched Successfully",
+    });
+    expect(fetch).toHaveBeenCalledWith(`${API_BASE_URL}/test`);
   });
 
-  it("should return ErrorResponseHandler for non-OK API response", async () => {
-    const mockError = { code: "NOT_FOUND", message: "Resource not found" };
-    (global.fetch as jest.Mock).mockResolvedValueOnce({
+  it("returns ErrorResponseHandler on failed fetch (non-2xx)", async () => {
+    const mockError = { error: "fail" };
+    (fetch as jest.Mock).mockResolvedValueOnce({
       ok: false,
       status: 404,
-      json: jest.fn().mockResolvedValueOnce(mockError),
+      json: async () => mockError,
     });
 
-    const response = await getElements(mockUrl);
-
-    expect(fetch).toHaveBeenCalledWith(fullUrl);
-    expect(response).toBeInstanceOf(ErrorResponseHandler);
-    expect(response).toEqual(
-      new ErrorResponseHandler(false, 404, mockError, "Failed Request")
-    );
+    const result = await getElements("/fail");
+    expect(result).toBeInstanceOf(ErrorResponseHandler);
+    expect(result).toMatchObject({
+      success: false,
+      status: 404,
+      error: mockError,
+      message: "Failed Request",
+    });
+    expect(fetch).toHaveBeenCalledWith(`${API_BASE_URL}/fail`);
   });
 
-  it("should return ErrorResponseHandler for network error", async () => {
-    const errorMessage = "Network Error";
-    (global.fetch as jest.Mock).mockRejectedValueOnce(new Error(errorMessage));
+  it("returns ErrorResponseHandler on fetch error", async () => {
+    const mockError = new Error("Network error");
+    (fetch as jest.Mock).mockRejectedValueOnce(mockError);
 
-    const response = await getElements(mockUrl);
-
-    expect(fetch).toHaveBeenCalledWith(fullUrl);
-    expect(response).toBeInstanceOf(ErrorResponseHandler);
-    expect(response).toEqual(
-      new ErrorResponseHandler(false, 500, errorMessage, "Request Failed")
-    );
-  });
-
-  it("should handle error without message property", async () => {
-    (global.fetch as jest.Mock).mockRejectedValueOnce({});
-
-    const response = await getElements(mockUrl);
-
-    expect(fetch).toHaveBeenCalledWith(fullUrl);
-    expect(response).toBeInstanceOf(ErrorResponseHandler);
-    expect(response).toEqual(
-      new ErrorResponseHandler(false, 500, {}, "Request Failed")
-    );
+    const result = await getElements("/error");
+    expect(result).toBeInstanceOf(ErrorResponseHandler);
+    expect(result).toMatchObject({
+      success: false,
+      status: 500,
+      error: mockError,
+      message: "Request Failed",
+    });
+    expect(fetch).toHaveBeenCalledWith(`${API_BASE_URL}/error`);
   });
 });

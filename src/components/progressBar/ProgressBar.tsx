@@ -1,15 +1,17 @@
-import React from "react";
 import styles from "./ProgressBar.module.css";
 import progressBarData from "./ProgressData";
 import useBoundStore from "../../store/useBoundStore";
 
-const ProgressBarComponent = () => {
+const ProgressBar = () => {
   const currentSkipStep = useBoundStore((state) => state.currentSkipStep);
 
   return (
     <main className={styles.progressContainer}>
       <progress max={100} value="38" className={styles.progressBar}></progress>
-      <section className={styles.progressBarItems}>
+      <section
+        className={styles.progressBarItems}
+        aria-label="Progress Bar Items"
+      >
         {progressBarData.map((progressData, index) => {
           return (
             <section key={progressData.id}>
@@ -31,4 +33,4 @@ const ProgressBarComponent = () => {
   );
 };
 
-export default ProgressBarComponent;
+export default ProgressBar;

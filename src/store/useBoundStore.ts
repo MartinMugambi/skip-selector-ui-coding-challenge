@@ -1,7 +1,8 @@
 import { create } from "zustand";
-import createSkipSlice from "./slices/useSkipSlice";
-const useBoundStore = create((set, get) => ({
-  ...createSkipSlice(set, get),
+import { SkipSlice } from "./slices/useSkipSlice/useSkip.types";
+import createSkipSlice from "./slices/useSkipSlice/useSkipSlice";
+const useBoundStore = create<SkipSlice>((set, get, store) => ({
+  ...createSkipSlice(set, get, store),
 }));
 
 export default useBoundStore;

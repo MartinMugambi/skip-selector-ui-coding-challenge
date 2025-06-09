@@ -7,7 +7,7 @@
 
 .progressBar {
   color: white;
-  width: 45%;
+  width: clamp(300px, 45%, 600px);
   height: 8px;
   border-radius: 100px;
   appearance: none;
@@ -33,7 +33,7 @@
   display: flex;
   flex-direction: row;
   gap: 1rem;
-  width: 45%;
+  width: clamp(300px, 45%, 600px);
   margin-top: 0.8rem;
   align-items: center;
   justify-content: space-between;
@@ -50,6 +50,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  border: none;
 }
 
 .progressBarSelected {
@@ -64,59 +65,15 @@
   font-weight: bold;
   cursor: pointer;
 }
+
 .progressTitle {
   width: 100%;
   text-align: center;
-
   font-size: 0.8rem;
-}
-
-@media screen and (max-width: 768px) {
-  .progressContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    width: 100%;
-    flex-wrap: wrap;
-    margin-top: 1.5rem;
-  }
-  .progressBar {
-    width: 100%;
-  }
-  .progressBarItems {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    flex-wrap: wrap;
-    width: 100%;
-  }
-}
-
-@media screen and (max-width: 1024px) {
-  .progressContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    width: 100%;
-    flex-wrap: wrap;
-    margin-top: 1.5rem;
-  }
-  .progressBar {
-    width: 100%;
-  }
-  .progressBarItems {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    flex-wrap: wrap;
-    width: 100%;
-  }
 }
 
 @media screen and (max-width: 1280px) {
   .progressContainer {
-    display: flex;
-    flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
     width: 100%;
@@ -128,8 +85,7 @@
   }
   .progressBarItems {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    flex-wrap: wrap;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     width: 100%;
   }
 }
