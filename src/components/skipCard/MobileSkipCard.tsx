@@ -31,7 +31,7 @@ const MobileSkipCard = (props: SkipCardProps) => {
       <span>Perfect for small project</span>
       <Button
         title={isSelected ? "Selected" : "Select"}
-        bgColor={isSelected ? "#0d9488" : ""}
+        bgColor={isSelected ? "#0d9488" : "#59606b"}
       />
     </section>
   );

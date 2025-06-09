@@ -1,4 +1,3 @@
-import React from "react";
 import NavBarProps from "./NavBar.types";
 import styles from "./NavBar.module.css";
 const NavBar = (props: NavBarProps) => {
