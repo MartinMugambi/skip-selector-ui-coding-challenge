@@ -14,7 +14,7 @@ const useResponsive = () => {
     window.addEventListener("resize", handleResize);
 
     return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  }, [device]);
 
   return {
     isMobile: device === "mobile",
