@@ -7,7 +7,7 @@
 .navBarContainer > h1 {
   color: var(--text-primary-color);
   font-size: 1.2rem;
-  margin: 0rem 5rem;
+  margin: 0rem 15rem;
 }
 
 @media screen and (max-width: 768px) {

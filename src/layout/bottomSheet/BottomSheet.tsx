@@ -4,7 +4,7 @@ import styles from "./BottomSheet.module.css";
 const BottomSheet = () => {
   return (
     <section className={styles.bottomSheetContainer}>
-      <Button title="Back" bgColor="" />
+      <Button title="Back" bgColor="#59606b" />
       <Button title="Continue" />
     </section>
   );
