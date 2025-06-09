@@ -8,9 +8,12 @@ import useBoundStore from "../../store/useBoundStore";
 import CustomPagination from "../../components/customPagination/CustomPagination";
 import { SkipItem } from "../../store/slices/useSkipSlice/useSkip.types";
 import SkeletonLoader from "../../components/skeletonLoader/SkeletonLoader";
-
+import MobileSkipCard from "../../components/skipCard/MobileSkipCard";
+import useResponsive from "../../hooks/useResponssive";
 const Home = () => {
   const skipData = useBoundStore((state) => state.skipData);
+
+  const { isDesktop } = useResponsive();
 
   const getSkipData = useBoundStore((state) => state.getSkipData);
 
@@ -44,10 +47,13 @@ const Home = () => {
   };
 
   const availableSkipData = useMemo(() => {
-    const skip = skipData.slice(startIndex, endIndex);
-    selectSkip(skipData[startIndex], skipData[startIndex]?.id);
-    return skip;
-  }, [skipData, startIndex, endIndex]);
+    if (isDesktop) {
+      const skip = skipData.slice(startIndex, endIndex);
+      selectSkip(skipData[startIndex], skipData[startIndex]?.id);
+      return skip;
+    }
+    return skipData;
+  }, [skipData, startIndex, endIndex, isDesktop]);
 
   useEffect(() => {
     getSkipData();
@@ -84,14 +90,30 @@ const Home = () => {
                     </div>
                   ))
               : availableSkipData.map((skipItem) => (
-                  <SkipCard
-                    key={skipItem?.id}
-                    size={skipItem?.size}
-                    hire_period_days={skipItem?.hire_period_days}
-                    price_before_vat={skipItem?.price_before_vat}
-                    onClick={() => handleSelect(skipItem)}
-                    id={skipItem?.id}
-                  />
+                  <>
+                    {!isDesktop ? (
+                      <section>
+                        <MobileSkipCard
+                          key={skipItem?.id}
+                          size={skipItem?.size}
+                          hire_period_days={skipItem?.hire_period_days}
+                          price_before_vat={skipItem?.price_before_vat}
+                          onClick={() => handleSelect(skipItem)}
+                          id={skipItem?.id}
+                          image={skipItem.image}
+                        />
+                      </section>
+                    ) : (
+                      <SkipCard
+                        key={skipItem?.id}
+                        size={skipItem?.size}
+                        hire_period_days={skipItem?.hire_period_days}
+                        price_before_vat={skipItem?.price_before_vat}
+                        onClick={() => handleSelect(skipItem)}
+                        id={skipItem?.id}
+                      />
+                    )}
+                  </>
                 ))}
           </section>
           {isCardSelected ? (
@@ -120,13 +142,15 @@ const Home = () => {
             </section>
           )}
         </section>
-        <section className={styles.homeCustomPagination}>
-          <CustomPagination
-            totalItems={skipData.length}
-            itemsPerPage={itemsPerPage}
-            handlePageClick={handlePageClick}
-          />
-        </section>
+        {isDesktop && (
+          <section className={styles.homeCustomPagination}>
+            <CustomPagination
+              totalItems={skipData.length}
+              itemsPerPage={itemsPerPage}
+              handlePageClick={handlePageClick}
+            />
+          </section>
+        )}
       </SpacingWrapper>
     </main>
   );
