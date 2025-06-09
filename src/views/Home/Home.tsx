@@ -7,6 +7,8 @@ import SpacingWrapper from "../../components/spacingWrapper/SpacingWrapper";
 import useBoundStore from "../../store/useBoundStore";
 import CustomPagination from "../../components/customPagination/CustomPagination";
 import { SkipItem } from "../../store/slices/useSkipSlice/useSkip.types";
+import SkeletonLoader from "../../components/skeletonLoader/SkeletonLoader";
+
 const Home = () => {
   const skipData = useBoundStore((state) => state.skipData);
 
@@ -26,6 +28,8 @@ const Home = () => {
   const startIndex = (currentPage - 1) * itemsPerPage;
 
   const endIndex = startIndex + itemsPerPage;
+
+  const isLoading = useBoundStore((state) => state.loading);
 
   const handleSelect = (skipItem: SkipItem) => {
     selectSkip(skipItem, skipItem.id);
@@ -59,28 +63,56 @@ const Home = () => {
         </section>
         <section className={styles.homeCardContainer}>
           <section className={styles.homeCardSection}>
-            {availableSkipData.map((skipItem) => {
-              return (
-                <SkipCard
-                  key={skipItem?.id}
-                  size={skipItem?.size}
-                  hire_period_days={skipItem?.hire_period_days}
-                  price_before_vat={skipItem?.price_before_vat}
-                  onClick={() => handleSelect(skipItem)}
-                  id={skipItem?.id}
-                />
-              );
-            })}
+            {isLoading
+              ? Array(itemsPerPage)
+                  .fill(0)
+                  .map((_, idx) => (
+                    <div
+                      key={idx}
+                      style={{ width: 400, height: 120, margin: 8 }}
+                    >
+                      <SkeletonLoader
+                        height={72}
+                        style={{ marginBottom: 12 }}
+                      />
+                      <SkeletonLoader
+                        height={16}
+                        width="80%"
+                        style={{ marginBottom: 8 }}
+                      />
+                      <SkeletonLoader height={16} width="60%" />
+                    </div>
+                  ))
+              : availableSkipData.map((skipItem) => (
+                  <SkipCard
+                    key={skipItem?.id}
+                    size={skipItem?.size}
+                    hire_period_days={skipItem?.hire_period_days}
+                    price_before_vat={skipItem?.price_before_vat}
+                    onClick={() => handleSelect(skipItem)}
+                    id={skipItem?.id}
+                  />
+                ))}
           </section>
           {isCardSelected ? (
             <section>
-              <SkipCardDetails
-                size={skipDetailData?.size}
-                hire_period_days={skipDetailData?.hire_period_days}
-                price_before_vat={skipDetailData?.price_before_vat}
-                image={skipDetailData?.image}
-                id={skipDetailData?.id}
-              />
+              {isLoading ? (
+                <div style={{ padding: 16, width: 550 }}>
+                  <SkeletonLoader
+                    height={250}
+                    width={550}
+                    style={{ marginBottom: 16 }}
+                  />
+                </div>
+              ) : (
+                <SkipCardDetails
+                  size={skipDetailData?.size}
+                  hire_period_days={skipDetailData?.hire_period_days}
+                  price_before_vat={skipDetailData?.price_before_vat}
+                  image={skipDetailData?.image}
+                  id={skipDetailData?.id}
+                />
+              )}
             </section>
           ) : (
             <section className={styles.homeCardSectionHidePreview}>
